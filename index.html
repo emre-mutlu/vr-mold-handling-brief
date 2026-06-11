@@ -208,8 +208,10 @@
       <input class="free shortfield" data-q="K8.3 — Mevcut VR donanımı" placeholder="Cevabınız:"></div>
     <div class="shortq"><span>4. Kasım 2026 hedefini teyit ediyor musunuz? Daha erken bir ara gösterim beklentiniz var mı?</span>
       <input class="free shortfield" data-q="K8.4 — Takvim teyidi" placeholder="Cevabınız:"></div>
-    <div class="shortq"><span>5. Cevaplayan kişi ve kurum (isim, e-posta):</span>
-      <input class="free shortfield" data-q="K8.5 — Cevaplayan kişi ve iletişim" placeholder="Cevabınız:"></div>
+    <div class="shortq"><span>5. Cevaplayan kişi ve kurum:</span>
+      <input class="free shortfield" data-q="K8.5 — Cevaplayan kişi ve kurum" placeholder="Cevabınız:"></div>
+    <div class="shortq"><span>6. E-posta adresiniz (dönüş yapabilmemiz için):</span>
+      <input class="free shortfield" type="email" id="replyto" data-q="K8.6 — E-posta" placeholder="ornek@firma.com"></div>
   </div>
 </section>
 
@@ -290,13 +292,17 @@ document.getElementById("send").addEventListener("click", function () {
   btn.disabled = true;
   setStatus("Gönderiliyor…");
 
+  var payload = {
+    _subject: "VR Kalıp Taşıma Simülasyonu — Karar Cevapları",
+    cevaplar: buildSummary()
+  };
+  var replyto = document.getElementById("replyto");
+  if (replyto && replyto.value.trim()) payload._replyto = replyto.value.trim();
+
   fetch(FORMSPREE_URL, {
     method: "POST",
     headers: { "Accept": "application/json", "Content-Type": "application/json" },
-    body: JSON.stringify({
-      _subject: "VR Kalıp Taşıma Simülasyonu — Karar Cevapları",
-      cevaplar: buildSummary()
-    })
+    body: JSON.stringify(payload)
   }).then(function (res) {
     if (res.ok) {
       setStatus("Cevaplarınız iletildi, teşekkür ederiz. En kısa sürede dönüş yapacağız.", "ok");
