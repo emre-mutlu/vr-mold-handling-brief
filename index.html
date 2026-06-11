@@ -48,7 +48,7 @@
 
 <header class="doc">
   <h1>VR Kalıp Taşıma ve Yerleştirme Simülasyonu</h1>
-  <div class="sub">Proje Tanım Dokümanı ve Karar Soruları · Taslak v0.8 — 11.06.2026</div>
+  <div class="sub">Proje Tanım Dokümanı ve Karar Soruları · v1.0 — 11.06.2026</div>
 </header>
 
 <div class="howto">
@@ -197,6 +197,10 @@
       <input class="free shortfield" data-q="K7.3 — Kalıp tipi / senaryo sayısı" placeholder="Cevabınız:"></div>
     <div class="shortq"><span>4. Kasım 2026 hedefini teyit ediyor musunuz? Daha erken bir ara gösterim beklentiniz var mı?</span>
       <input class="free shortfield" data-q="K7.4 — Takvim teyidi" placeholder="Cevabınız:"></div>
+    <div class="shortq"><span>5. Cevaplayan kişi ve kurum:</span>
+      <input class="free shortfield" data-q="K7.5 — Cevaplayan kişi ve kurum" placeholder="Cevabınız:"></div>
+    <div class="shortq"><span>6. E-posta adresiniz (dönüş yapabilmemiz için):</span>
+      <input class="free shortfield" type="email" id="replyto" data-q="K7.6 — E-posta" placeholder="ornek@firma.com"></div>
   </div>
 
   <div class="qcard" data-q="K8 — Eğitim ve kurulum hizmeti">
@@ -262,7 +266,7 @@
 var FORMSPREE_URL = "https://formspree.io/f/xjgdeplp";
 
 function buildSummary() {
-  var lines = ["VR Kalıp Taşıma Simülasyonu — Karar Cevapları (v0.8)", ""];
+  var lines = ["VR Kalıp Taşıma Simülasyonu — Karar Cevapları (v1.0)", ""];
 
   var extras = Array.from(document.querySelectorAll('input[name="extra"]:checked')).map(function (c) { return c.value; });
   lines.push("Ek özellikler: " + (extras.length ? extras.join("; ") : "(seçilmedi)"));
@@ -303,6 +307,8 @@ document.getElementById("send").addEventListener("click", function () {
     _subject: "VR Kalıp Taşıma Simülasyonu — Karar Cevapları",
     cevaplar: buildSummary()
   };
+  var replyto = document.getElementById("replyto");
+  if (replyto && replyto.value.trim()) payload._replyto = replyto.value.trim();
 
   fetch(FORMSPREE_URL, {
     method: "POST",
