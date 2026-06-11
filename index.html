@@ -48,7 +48,7 @@
 
 <header class="doc">
   <h1>VR Kalıp Taşıma ve Yerleştirme Simülasyonu</h1>
-  <div class="sub">Proje Tanım Dokümanı ve Karar Soruları · Taslak v0.7 — 11.06.2026</div>
+  <div class="sub">Proje Tanım Dokümanı ve Karar Soruları · Taslak v0.8 — 11.06.2026</div>
 </header>
 
 <div class="howto">
@@ -137,7 +137,7 @@
     <label class="opt"><input type="radio" name="k1" value="A) Meta Quest 3 / 3S"><span><b>A) Meta Quest 3 / 3S</b> — Olgun ekosistem, en uygun cihaz başı maliyet ve kolay filo yönetimi. Çok sayıda istasyonu ekonomik kurmak için en pratik seçenek.</span></label>
     <label class="opt"><input type="radio" name="k1" value="B) Pico 4 Ultra"><span><b>B) Pico 4 Ultra</b> — Güçlü kurumsal cihaz yönetimi (MDM/SDK) ve iyi fiyat/performans dengesi.</span></label>
     <label class="opt"><input type="radio" name="k1" value="C) HTC VIVE Focus Vision"><span><b>C) HTC VIVE Focus Vision</b> — 5K çözünürlük ve göz takibi; kalıp/etiket okunabilirliği ve görsel netlik öncelikse en dengeli kurumsal seçenek.</span></label>
-    <label class="opt"><input type="radio" name="k1" value="D) Seçimi size bırakıyorum"><span><b>D) Seçimi size bırakıyorum</b> — İhtiyaçlarınıza en uygun modeli teklif aşamasında birlikte netleştiririz.</span></label>
+    <label class="opt"><input type="radio" name="k1" value="D) Seçimi size bırakıyorum (öneriniz)"><span><b>D) Seçimi size bırakıyorum (Önerimiz)</b> — İhtiyaçlarınıza en uygun modeli teklif aşamasında biz öneririz.</span></label>
     <textarea class="free notefield" placeholder="Diğer / Not (elinizdeki kısıt veya başka bir model varsa):"></textarea>
     <div class="warn">Daha yüksek görsel beklenti veya özel ihtiyaçlar için üst seviye alternatifler (ör. Varjo XR-4, Pimax Crystal) mevcuttur; bu proje için yukarıdaki modellerin yeterli olacağını düşünüyoruz.</div>
   </div>
@@ -167,8 +167,6 @@
     <label class="opt"><input type="radio" name="k4" value="C) Ayarlanabilir"><span><b>C) Ayarlanabilir</b> — Değerler kurulumdan sonra eğitmen tarafından bir ayar ekranından değiştirilebilir; geliştirme kapsamını büyütür.</span></label>
     <label class="opt"><input type="radio" name="k4" value="Diğer (nota bakınız)"><span>Diğer</span></label>
     <textarea class="free notefield" placeholder="Diğer / Not:"></textarea>
-    <div class="shortq"><span>Faz 1'de yaklaşık kaç farklı kalıp tipi ve kaç görev senaryosu hedefliyorsunuz? <span class="note">(kapsam ve süreyi etkiler; bilmiyorsanız boş bırakın)</span></span>
-      <input class="free shortfield" data-q="K4 — Kalıp tipi / senaryo sayısı" placeholder="Cevabınız:"></div>
   </div>
 
   <div class="qcard" data-q="K5 — Fabrika ortamının gerçekliği">
@@ -195,12 +193,10 @@
       <input class="free shortfield" data-q="K7.1 — Kişi profili ve sayısı" placeholder="Cevabınız:"></div>
     <div class="shortq"><span>2. Kaç cihaz/istasyon planlanıyor, kurulum nerede yapılacak?</span>
       <input class="free shortfield" data-q="K7.2 — Cihaz sayısı ve kurulum yeri" placeholder="Cevabınız:"></div>
-    <div class="shortq"><span>3. Kasım 2026 hedefini teyit ediyor musunuz? Daha erken bir ara gösterim beklentiniz var mı?</span>
-      <input class="free shortfield" data-q="K7.3 — Takvim teyidi" placeholder="Cevabınız:"></div>
-    <div class="shortq"><span>4. Cevaplayan kişi ve kurum:</span>
-      <input class="free shortfield" data-q="K7.4 — Cevaplayan kişi ve kurum" placeholder="Cevabınız:"></div>
-    <div class="shortq"><span>5. E-posta adresiniz (dönüş yapabilmemiz için):</span>
-      <input class="free shortfield" type="email" id="replyto" data-q="K7.5 — E-posta" placeholder="ornek@firma.com"></div>
+    <div class="shortq"><span>3. Faz 1'de yaklaşık kaç farklı kalıp tipi ve kaç görev senaryosu hedefliyorsunuz? <span class="note">(kapsam ve süreyi etkiler; bilmiyorsanız boş bırakın)</span></span>
+      <input class="free shortfield" data-q="K7.3 — Kalıp tipi / senaryo sayısı" placeholder="Cevabınız:"></div>
+    <div class="shortq"><span>4. Kasım 2026 hedefini teyit ediyor musunuz? Daha erken bir ara gösterim beklentiniz var mı?</span>
+      <input class="free shortfield" data-q="K7.4 — Takvim teyidi" placeholder="Cevabınız:"></div>
   </div>
 
   <div class="qcard" data-q="K8 — Eğitim ve kurulum hizmeti">
@@ -266,7 +262,7 @@
 var FORMSPREE_URL = "https://formspree.io/f/xjgdeplp";
 
 function buildSummary() {
-  var lines = ["VR Kalıp Taşıma Simülasyonu — Karar Cevapları (v0.7)", ""];
+  var lines = ["VR Kalıp Taşıma Simülasyonu — Karar Cevapları (v0.8)", ""];
 
   var extras = Array.from(document.querySelectorAll('input[name="extra"]:checked')).map(function (c) { return c.value; });
   lines.push("Ek özellikler: " + (extras.length ? extras.join("; ") : "(seçilmedi)"));
@@ -307,8 +303,6 @@ document.getElementById("send").addEventListener("click", function () {
     _subject: "VR Kalıp Taşıma Simülasyonu — Karar Cevapları",
     cevaplar: buildSummary()
   };
-  var replyto = document.getElementById("replyto");
-  if (replyto && replyto.value.trim()) payload._replyto = replyto.value.trim();
 
   fetch(FORMSPREE_URL, {
     method: "POST",
