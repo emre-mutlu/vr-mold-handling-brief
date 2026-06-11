@@ -48,7 +48,7 @@
 
 <header class="doc">
   <h1>VR Kalıp Taşıma ve Yerleştirme Simülasyonu</h1>
-  <div class="sub">Proje Tanım Dokümanı ve Karar Soruları · Taslak v0.5 — 11.06.2026</div>
+  <div class="sub">Proje Tanım Dokümanı ve Karar Soruları · Taslak v0.7 — 11.06.2026</div>
 </header>
 
 <div class="howto">
@@ -59,13 +59,13 @@
 
 <section>
   <h2>1. Proje Özeti</h2>
-  <p>Fabrika ortamında geçen bir sanal gerçeklik (VR) eğitim simülasyonu geliştirilecektir. Kullanıcı, yönlendiricinin (hangi kalıbın nereye taşınacağı talimatını veren kişi) verdiği talimata göre doğru kalıbı alır ve doğru yere yerleştirir. Tüm ekran metinleri ve sesler <b>İngilizce</b> olacaktır.</p>
+  <p>Fabrika ortamında geçen bir sanal gerçeklik (VR) eğitim simülasyonu geliştirilecektir. Kullanıcı, ortamda bulunan sanal bir görevlinin (NPC) verdiği talimata göre (hangi kalıbın nereye taşınacağı) doğru kalıbı alır ve doğru yere yerleştirir. Tüm ekran metinleri ve sesler <b>İngilizce</b> olacaktır.</p>
   <ul>
     <li><b>Görev akışı:</b> Talimatı al → doğru kalıbı bul → güvenle kaldır ve taşı → hedefe yerleştir → onay al, sıradaki görev.</li>
     <li><b>Gerçeğe yakın kontroller:</b> Taşıma ekipmanının gerçek kumanda mantığına mümkün olduğunca sadık bir kontrol şeması hedeflenir.</li>
     <li><b>Tonaj uyarısı:</b> Kalıbın ağırlığı, kullanılan ekipmanın veya hedef noktanın kapasitesini aşıyorsa kullanıcı sesli ve görsel olarak uyarılır.</li>
     <li><b>İzleme ekranı:</b> Kullanıcının yaptığı iş, dışarıdaki bir ekrandan eğitmen ve izleyiciler tarafından canlı takip edilebilir.</li>
-    <li><b>Donanım:</b> Bağımsız VR gözlük veya PC'ye bağlı VR kullanılabilir; tercih, Bölüm 6'daki K1 sorusunda size bırakılmıştır.</li>
+    <li><b>Donanım:</b> Uygulama <b>PC'ye bağlı (tethered) VR</b> gözlükle çalışacak şekilde geliştirilir — yüksek görsel kalite, büyük fabrika sahnesinde rahat performans ve kesintisiz izleme ekranı için. Önerilen güncel gözlük modelleri Bölüm 6 K1'de sunulmuştur.</li>
   </ul>
 </section>
 
@@ -85,7 +85,7 @@
   <h3>Ana kapsam (Faz 1)</h3>
   <ul>
     <li>Tek kullanıcılı VR fabrika ortamı (İngilizce)</li>
-    <li>Yönlendirici talimat sistemi (görev kartı ve/veya sesli yönlendirme — bkz. K3)</li>
+    <li>Yönlendirici talimat sistemi — talimatları ortamdaki sanal görevli (NPC) verir</li>
     <li>Kalıbı sarsmadan, kontrollü şekilde taşıma ve hedefe tam yerleştirme mekanikleri</li>
     <li>Tonaj kontrolü ve aşırı yük uyarısı (sesli + görsel)</li>
     <li>Doğru/yanlış yerleştirme geri bildirimi ve görev tamamlama akışı</li>
@@ -120,8 +120,8 @@
   <h2>5. Varsayımlarımız</h2>
   <ul>
     <li>Simülasyon tek kullanıcılıdır; izleyiciler yalnızca ekrandan takip eder, sanal ortama katılmaz.</li>
-    <li>Kalıp listesi, tonaj değerleri ve yerleşim mantığı için tarafınızdan örnek veri alınması beklenir; iletilemezse sektöre uygun temsili değerler kullanılır (bkz. K5).</li>
-    <li>Fabrika ortamı, gerçek tesisin birebir kopyası değil, temsili bir ortam olarak modellenir (aksi K6'da belirtilmedikçe).</li>
+    <li>Kalıp listesi, tonaj değerleri ve yerleşim mantığı için tarafınızdan örnek veri alınması beklenir; iletilemezse sektöre uygun temsili değerler kullanılır (bkz. K4).</li>
+    <li>Fabrika ortamı, gerçek tesisin birebir kopyası değil, temsili bir ortam olarak modellenir (aksi K5'te belirtilmedikçe).</li>
     <li>Projenin <b>Kasım 2026</b> içinde tamamlanması hedeflenmektedir; kesin takvim, bu dokümandaki cevaplara göre teklif aşamasında netleştirilir.</li>
     <li>Hedef cihaz sayısı ve kurulum yeri sözleşme aşamasında netleştirilir.</li>
   </ul>
@@ -129,19 +129,17 @@
 
 <section>
   <h2>6. Karar Soruları</h2>
-  <p class="note">Önerimiz her soruda "(Önerimiz)" olarak işaretlidir. Tercihinizi işaretleyin; farklı bir tercihiniz varsa "Diğer / Not" alanına yazın.</p>
+  <p class="note">İlgili sorularda önerimiz "(Önerimiz)" olarak belirtilmiştir. Tercihinizi işaretleyin; farklı bir tercihiniz varsa "Diğer / Not" alanına yazın.</p>
 
-  <div class="qcard" data-q="K1 — Hedef donanım">
-    <h3>K1 — Hedef donanım</h3>
-    <label class="opt"><input type="radio" name="k1" value="A) PC bağlantılı VR (öneriniz)"><span><b>A) PC bağlantılı VR (Önerimiz)</b> — Gözlük bir bilgisayara bağlı çalışır. Daha yüksek görsel kalite, büyük fabrika sahnesinde rahat performans ve kesintisiz, kaliteli bir izleme ekranı sağlar.</span></label>
-    <label class="opt"><input type="radio" name="k1" value="B) Bağımsız (standalone) gözlük"><span><b>B) Bağımsız (standalone) gözlük</b> — Kablosuz ve pratiktir, bilgisayar gerektirmez. Grafik detayı daha sınırlıdır; izleme ekranı kablosuz yayınla çalışır ve küçük gecikme/kalite kaybı olabilir.</span></label>
-    <label class="opt"><input type="radio" name="k1" value="C) İkisi de desteklensin"><span><b>C) İkisi de desteklensin</b> — Kullanım esnekliği sağlar; geliştirme ve test maliyetini artırır.</span></label>
-    <label class="opt"><input type="radio" name="k1" value="Diğer (nota bakınız)"><span>Diğer</span></label>
-    <textarea class="free notefield" placeholder="Diğer / Not:"></textarea>
-    <div class="shortq">
-      <span><b>K1b —</b> Tercih ettiğiniz veya halihazırda elinizde bulunan bir VR gözlük marka/modeli var mı? <span class="note">(örn. Meta Quest 3, Pico 4, HTC Vive Focus — örnek olarak verilmiştir, seçim size aittir)</span></span>
-      <input class="free shortfield" data-q="K1b — Gözlük marka/modeli" placeholder="Cevabınız:">
-    </div>
+  <div class="qcard" data-q="K1 — Tercih edilen gözlük">
+    <h3>K1 — Hangi VR gözlük tercih edilsin?</h3>
+    <p class="note">Proje <b>PC'ye bağlı VR</b> üzerine kuruludur (bkz. Bölüm 1). Aşağıdakiler PC'ye bağlı çalışabilen, sahada kendini kanıtlamış güncel modellerdir. Birini işaretleyin; net bir tercihiniz yoksa seçimi bize bırakabilirsiniz. Donanımı kimin temin edeceği için bkz. K9.</p>
+    <label class="opt"><input type="radio" name="k1" value="A) Meta Quest 3 / 3S"><span><b>A) Meta Quest 3 / 3S</b> — Olgun ekosistem, en uygun cihaz başı maliyet ve kolay filo yönetimi. Çok sayıda istasyonu ekonomik kurmak için en pratik seçenek.</span></label>
+    <label class="opt"><input type="radio" name="k1" value="B) Pico 4 Ultra"><span><b>B) Pico 4 Ultra</b> — Güçlü kurumsal cihaz yönetimi (MDM/SDK) ve iyi fiyat/performans dengesi.</span></label>
+    <label class="opt"><input type="radio" name="k1" value="C) HTC VIVE Focus Vision"><span><b>C) HTC VIVE Focus Vision</b> — 5K çözünürlük ve göz takibi; kalıp/etiket okunabilirliği ve görsel netlik öncelikse en dengeli kurumsal seçenek.</span></label>
+    <label class="opt"><input type="radio" name="k1" value="D) Seçimi size bırakıyorum"><span><b>D) Seçimi size bırakıyorum</b> — İhtiyaçlarınıza en uygun modeli teklif aşamasında birlikte netleştiririz.</span></label>
+    <textarea class="free notefield" placeholder="Diğer / Not (elinizdeki kısıt veya başka bir model varsa):"></textarea>
+    <div class="warn">Daha yüksek görsel beklenti veya özel ihtiyaçlar için üst seviye alternatifler (ör. Varjo XR-4, Pimax Crystal) mevcuttur; bu proje için yukarıdaki modellerin yeterli olacağını düşünüyoruz.</div>
   </div>
 
   <div class="qcard" data-q="K2 — Kalıbın taşındığı ekipman">
@@ -153,65 +151,78 @@
     <textarea class="free notefield" placeholder="Diğer / Not — tesisinizdeki gerçek yöntemi yazmanız yeterli:"></textarea>
   </div>
 
-  <div class="qcard" data-q="K3 — Yönlendirici talimatları">
-    <h3>K3 — Yönlendirici talimatları nasıl verilsin?</h3>
-    <label class="opt"><input type="radio" name="k3" value="A) Sesli yönlendirme + görev kartı (öneriniz)"><span><b>A) Sesli yönlendirme + ekranda görev kartı (Önerimiz)</b> — İngilizce telsiz/anons sesiyle talimat verilir; sanal bir panoda yazılı görev özeti de görünür. Gerçek fabrika iletişimine en yakın deneyimdir.</span></label>
-    <label class="opt"><input type="radio" name="k3" value="B) Sadece yazılı görev kartı"><span><b>B) Sadece yazılı görev kartı</b> — Seslendirme maliyeti olmaz; gerçekçilik bir miktar azalır.</span></label>
-    <label class="opt"><input type="radio" name="k3" value="C) Sanal karakter"><span><b>C) Sanal karakter</b> — Talimatı ortamdaki animasyonlu bir karakter verir; en gerçekçi ve en maliyetli seçenektir.</span></label>
+  <div class="qcard" data-q="K3 — İzleme ekranı içeriği">
+    <h3>K3 — İzleme ekranında ne görünsün?</h3>
+    <label class="opt"><input type="radio" name="k3" value="A) Kullanıcının gözünden görüntü"><span><b>A) Kullanıcının gözünden görüntü</b> — Gözlükteki görüntü ekrana aynen yansıtılır; en basit çözümdür.</span></label>
+    <label class="opt"><input type="radio" name="k3" value="B) Dış kamera"><span><b>B) Dış kamera</b> — Sahneyi dışarıdan gösteren sabit veya seçilebilir kamera; izleyiciler için daha anlaşılırdır.</span></label>
+    <label class="opt"><input type="radio" name="k3" value="C) İkisi birlikte + görev paneli (öneriniz)"><span><b>C) İkisi birlikte + görev durumu paneli (Önerimiz)</b> — Görüntünün yanında aktif görev, geçen süre ve uyarılar (örn. aşırı yük) da ekranda görünür; eğitmen için en bilgilendirici seçenektir.</span></label>
     <label class="opt"><input type="radio" name="k3" value="Diğer (nota bakınız)"><span>Diğer</span></label>
     <textarea class="free notefield" placeholder="Diğer / Not:"></textarea>
   </div>
 
-  <div class="qcard" data-q="K4 — İzleme ekranı içeriği">
-    <h3>K4 — İzleme ekranında ne görünsün?</h3>
-    <label class="opt"><input type="radio" name="k4" value="A) Kullanıcının gözünden görüntü"><span><b>A) Kullanıcının gözünden görüntü</b> — Gözlükteki görüntü ekrana aynen yansıtılır; en basit çözümdür.</span></label>
-    <label class="opt"><input type="radio" name="k4" value="B) Dış kamera"><span><b>B) Dış kamera</b> — Sahneyi dışarıdan gösteren sabit veya seçilebilir kamera; izleyiciler için daha anlaşılırdır.</span></label>
-    <label class="opt"><input type="radio" name="k4" value="C) İkisi birlikte + görev paneli (öneriniz)"><span><b>C) İkisi birlikte + görev durumu paneli (Önerimiz)</b> — Görüntünün yanında aktif görev, geçen süre ve uyarılar (örn. aşırı yük) da ekranda görünür; eğitmen için en bilgilendirici seçenektir.</span></label>
+  <div class="qcard" data-q="K4 — Kalıp ve tonaj verisi">
+    <h3>K4 — Kalıp ve tonaj bilgileri nereden gelecek?</h3>
+    <label class="opt"><input type="radio" name="k4" value="A) Müşteriden gerçek liste (öneriniz)"><span><b>A) Sizden gerçek liste (Önerimiz)</b> — Kalıp tipleri, ağırlıkları ve ekipman/istasyon kapasiteleri tarafınızdan iletilir; simülasyon gerçek operasyonunuzu yansıtır.</span></label>
+    <label class="opt"><input type="radio" name="k4" value="B) Temsili değerler"><span><b>B) Temsili değerler</b> — Tarafımızca sektöre uygun örnek değerler kullanılır.</span></label>
+    <label class="opt"><input type="radio" name="k4" value="C) Ayarlanabilir"><span><b>C) Ayarlanabilir</b> — Değerler kurulumdan sonra eğitmen tarafından bir ayar ekranından değiştirilebilir; geliştirme kapsamını büyütür.</span></label>
     <label class="opt"><input type="radio" name="k4" value="Diğer (nota bakınız)"><span>Diğer</span></label>
     <textarea class="free notefield" placeholder="Diğer / Not:"></textarea>
+    <div class="shortq"><span>Faz 1'de yaklaşık kaç farklı kalıp tipi ve kaç görev senaryosu hedefliyorsunuz? <span class="note">(kapsam ve süreyi etkiler; bilmiyorsanız boş bırakın)</span></span>
+      <input class="free shortfield" data-q="K4 — Kalıp tipi / senaryo sayısı" placeholder="Cevabınız:"></div>
   </div>
 
-  <div class="qcard" data-q="K5 — Kalıp ve tonaj verisi">
-    <h3>K5 — Kalıp ve tonaj bilgileri nereden gelecek?</h3>
-    <label class="opt"><input type="radio" name="k5" value="A) Müşteriden gerçek liste (öneriniz)"><span><b>A) Sizden gerçek liste (Önerimiz)</b> — Kalıp tipleri, ağırlıkları ve ekipman/istasyon kapasiteleri tarafınızdan iletilir; simülasyon gerçek operasyonunuzu yansıtır.</span></label>
-    <label class="opt"><input type="radio" name="k5" value="B) Temsili değerler"><span><b>B) Temsili değerler</b> — Tarafımızca sektöre uygun örnek değerler kullanılır.</span></label>
-    <label class="opt"><input type="radio" name="k5" value="C) Ayarlanabilir"><span><b>C) Ayarlanabilir</b> — Değerler kurulumdan sonra eğitmen tarafından bir ayar ekranından değiştirilebilir; geliştirme kapsamını büyütür.</span></label>
+  <div class="qcard" data-q="K5 — Fabrika ortamının gerçekliği">
+    <h3>K5 — Fabrika ortamı ne kadar gerçeğe benzesin?</h3>
+    <label class="opt"><input type="radio" name="k5" value="A) Temsili fabrika (öneriniz)"><span><b>A) Temsili fabrika (Önerimiz)</b> — Gerçekçi ama belirli bir tesise bağlı olmayan ortam. Hızlı ve ekonomiktir; eğitim hedefini tam karşılar.</span></label>
+    <label class="opt"><input type="radio" name="k5" value="B) Tesise benzer ortam"><span><b>B) Tesisinize benzer ortam</b> — Fotoğraf ve yerleşim planından yola çıkılarak benzer bir atmosfer kurulur.</span></label>
+    <label class="opt"><input type="radio" name="k5" value="C) Birebir kopya"><span><b>C) Birebir kopya</b> — Teknik çizim veya ölçüm verisi gerektirir; en yüksek maliyetli seçenektir.</span></label>
     <label class="opt"><input type="radio" name="k5" value="Diğer (nota bakınız)"><span>Diğer</span></label>
     <textarea class="free notefield" placeholder="Diğer / Not:"></textarea>
   </div>
 
-  <div class="qcard" data-q="K6 — Fabrika ortamının gerçekliği">
-    <h3>K6 — Fabrika ortamı ne kadar gerçeğe benzesin?</h3>
-    <label class="opt"><input type="radio" name="k6" value="A) Temsili fabrika (öneriniz)"><span><b>A) Temsili fabrika (Önerimiz)</b> — Gerçekçi ama belirli bir tesise bağlı olmayan ortam. Hızlı ve ekonomiktir; eğitim hedefini tam karşılar.</span></label>
-    <label class="opt"><input type="radio" name="k6" value="B) Tesise benzer ortam"><span><b>B) Tesisinize benzer ortam</b> — Fotoğraf ve yerleşim planından yola çıkılarak benzer bir atmosfer kurulur.</span></label>
-    <label class="opt"><input type="radio" name="k6" value="C) Birebir kopya"><span><b>C) Birebir kopya</b> — Teknik çizim veya ölçüm verisi gerektirir; en yüksek maliyetli seçenektir.</span></label>
+  <div class="qcard" data-q="K6 — Performans ölçümü">
+    <h3>K6 — Performans ölçümü ve değerlendirme</h3>
+    <label class="opt"><input type="radio" name="k6" value="A) Sadece görev tamamlama"><span><b>A) Sadece görev tamamlama</b> — Doğru/yanlış geri bildirimi yeterlidir.</span></label>
+    <label class="opt"><input type="radio" name="k6" value="B) Temel ölçümler (öneriniz)"><span><b>B) Temel ölçümler (Önerimiz)</b> — Görev süresi, hatalı kalıp seçimi, aşırı yük ve çarpışma sayısı kaydedilir; oturum sonunda özet ekranı gösterilir.</span></label>
+    <label class="opt"><input type="radio" name="k6" value="C) Detaylı raporlama"><span><b>C) Detaylı raporlama</b> — Oturum kayıtlarının dışa aktarımı ve kullanıcı bazlı geçmiş takibi; opsiyonel kapsama girer.</span></label>
     <label class="opt"><input type="radio" name="k6" value="Diğer (nota bakınız)"><span>Diğer</span></label>
     <textarea class="free notefield" placeholder="Diğer / Not:"></textarea>
   </div>
 
-  <div class="qcard" data-q="K7 — Performans ölçümü">
-    <h3>K7 — Performans ölçümü ve değerlendirme</h3>
-    <label class="opt"><input type="radio" name="k7" value="A) Sadece görev tamamlama"><span><b>A) Sadece görev tamamlama</b> — Doğru/yanlış geri bildirimi yeterlidir.</span></label>
-    <label class="opt"><input type="radio" name="k7" value="B) Temel ölçümler (öneriniz)"><span><b>B) Temel ölçümler (Önerimiz)</b> — Görev süresi, hatalı kalıp seçimi, aşırı yük ve çarpışma sayısı kaydedilir; oturum sonunda özet ekranı gösterilir.</span></label>
-    <label class="opt"><input type="radio" name="k7" value="C) Detaylı raporlama"><span><b>C) Detaylı raporlama</b> — Oturum kayıtlarının dışa aktarımı ve kullanıcı bazlı geçmiş takibi; opsiyonel kapsama girer.</span></label>
-    <label class="opt"><input type="radio" name="k7" value="Diğer (nota bakınız)"><span>Diğer</span></label>
+  <div class="qcard" data-q="K7 — Kısa cevaplı sorular">
+    <h3>K7 — Kısa cevaplı sorular</h3>
+    <div class="shortq"><span>1. Eğitim alacak kişi profili ve sayısı (operatör, yeni personel vb.):</span>
+      <input class="free shortfield" data-q="K7.1 — Kişi profili ve sayısı" placeholder="Cevabınız:"></div>
+    <div class="shortq"><span>2. Kaç cihaz/istasyon planlanıyor, kurulum nerede yapılacak?</span>
+      <input class="free shortfield" data-q="K7.2 — Cihaz sayısı ve kurulum yeri" placeholder="Cevabınız:"></div>
+    <div class="shortq"><span>3. Kasım 2026 hedefini teyit ediyor musunuz? Daha erken bir ara gösterim beklentiniz var mı?</span>
+      <input class="free shortfield" data-q="K7.3 — Takvim teyidi" placeholder="Cevabınız:"></div>
+    <div class="shortq"><span>4. Cevaplayan kişi ve kurum:</span>
+      <input class="free shortfield" data-q="K7.4 — Cevaplayan kişi ve kurum" placeholder="Cevabınız:"></div>
+    <div class="shortq"><span>5. E-posta adresiniz (dönüş yapabilmemiz için):</span>
+      <input class="free shortfield" type="email" id="replyto" data-q="K7.5 — E-posta" placeholder="ornek@firma.com"></div>
+  </div>
+
+  <div class="qcard" data-q="K8 — Eğitim ve kurulum hizmeti">
+    <h3>K8 — Eğitim ve kurulum hizmeti</h3>
+    <p class="note">Teslimat sonrası kurulum desteği ve uygulama (kullanım) eğitimini teklife ayrı kalem olarak ekleyebiliriz. İhtiyacınızı işaretleyin; bir süre beklentiniz varsa belirtin, yoksa teklifte uygun süreyi biz öneririz.</p>
+    <label class="opt"><input type="radio" name="k8" value="A) Hem kurulum hem uygulama (kullanım) eğitimi (öneriniz)"><span><b>A) Hem kurulum hem uygulama (kullanım) eğitimi (Önerimiz)</b> — Sistemin kurulup devreye alınması ve eğitmen/operatörlerin uygulamayı kullanmayı öğrenmesi birlikte sağlanır.</span></label>
+    <label class="opt"><input type="radio" name="k8" value="B) Sadece uygulama (kullanım) eğitimi"><span><b>B) Sadece uygulama (kullanım) eğitimi</b> — Kurulumu kendiniz yaparsınız; yalnızca kullanım eğitimi veririz.</span></label>
+    <label class="opt"><input type="radio" name="k8" value="C) Sadece kurulum eğitimi"><span><b>C) Sadece kurulum eğitimi</b> — Sistemin kurulumu ve devreye alınması yapılır; kullanım kılavuzla aktarılır.</span></label>
+    <label class="opt"><input type="radio" name="k8" value="D) Eğitim gerekmiyor / kılavuz yeterli"><span><b>D) Eğitim gerekmiyor</b> — Kurulum ve kullanım kılavuzu yeterlidir.</span></label>
+    <label class="opt"><input type="radio" name="k8" value="Diğer (nota bakınız)"><span>Diğer</span></label>
+    <div class="shortq"><span>Beklediğiniz eğitim süresi (gün) — varsa belirtiniz:</span>
+      <input class="free shortfield" data-q="K8 — Beklenen eğitim süresi (gün)" placeholder="Cevabınız (örn. 1 gün, 2 gün):"></div>
     <textarea class="free notefield" placeholder="Diğer / Not:"></textarea>
   </div>
 
-  <div class="qcard" data-q="K8 — Kısa cevaplı sorular">
-    <h3>K8 — Kısa cevaplı sorular</h3>
-    <div class="shortq"><span>1. Eğitim alacak kişi profili ve sayısı (operatör, yeni personel vb.):</span>
-      <input class="free shortfield" data-q="K8.1 — Kişi profili ve sayısı" placeholder="Cevabınız:"></div>
-    <div class="shortq"><span>2. Kaç cihaz/istasyon planlanıyor, kurulum nerede yapılacak?</span>
-      <input class="free shortfield" data-q="K8.2 — Cihaz sayısı ve kurulum yeri" placeholder="Cevabınız:"></div>
-    <div class="shortq"><span>3. Mevcut VR donanımınız var mı, varsa model?</span>
-      <input class="free shortfield" data-q="K8.3 — Mevcut VR donanımı" placeholder="Cevabınız:"></div>
-    <div class="shortq"><span>4. Kasım 2026 hedefini teyit ediyor musunuz? Daha erken bir ara gösterim beklentiniz var mı?</span>
-      <input class="free shortfield" data-q="K8.4 — Takvim teyidi" placeholder="Cevabınız:"></div>
-    <div class="shortq"><span>5. Cevaplayan kişi ve kurum:</span>
-      <input class="free shortfield" data-q="K8.5 — Cevaplayan kişi ve kurum" placeholder="Cevabınız:"></div>
-    <div class="shortq"><span>6. E-posta adresiniz (dönüş yapabilmemiz için):</span>
-      <input class="free shortfield" type="email" id="replyto" data-q="K8.6 — E-posta" placeholder="ornek@firma.com"></div>
+  <div class="qcard" data-q="K9 — Donanım tedariki">
+    <h3>K9 — VR donanımını kim temin edecek?</h3>
+    <p class="note">PC bağlantılı VR için gözlük(ler) ve bunları çalıştıracak bilgisayar(lar) gerekir. Bu donanımı kimin sağlayacağını belirtin.</p>
+    <label class="opt"><input type="radio" name="k9" value="A) Donanımı biz (müşteri) temin ederiz (öneriniz)"><span><b>A) Donanımı biz (müşteri) temin ederiz (Önerimiz)</b> — Gözlük ve bilgisayarları kurum kendi satın alır; biz önerilen teknik özellikleri (gözlük modeli ve PC konfigürasyonu) yazılı olarak veririz. Maliyeti doğrudan görür, cihazların mülkiyeti sizde olur.</span></label>
+    <label class="opt"><input type="radio" name="k9" value="B) Donanım teklife dahil edilsin"><span><b>B) Donanım teklife dahil edilsin</b> — Gözlük ve bilgisayarları biz temin edip teklife ayrı kalem olarak ekleriz.</span></label>
+    <label class="opt"><input type="radio" name="k9" value="Diğer (nota bakınız)"><span>Diğer</span></label>
+    <textarea class="free notefield" placeholder="Diğer / Not:"></textarea>
   </div>
 </section>
 
@@ -220,7 +231,7 @@
   <ul>
     <li>Çalışır uygulama paketi (kurulum dosyası)</li>
     <li>Kurulum ve kullanım kılavuzu</li>
-    <li>Uzaktan kuruluma alma desteği ve kısa kullanım eğitimi</li>
+    <li>Kurulum ve kullanım eğitimi (kapsam ve süre K8'deki tercihinize göre)</li>
     <li>Teslim sonrası hata düzeltme desteği (süresi teklif dokümanında belirtilir)</li>
   </ul>
 </section>
@@ -255,7 +266,7 @@
 var FORMSPREE_URL = "https://formspree.io/f/xjgdeplp";
 
 function buildSummary() {
-  var lines = ["VR Kalıp Taşıma Simülasyonu — Karar Cevapları (v0.5)", ""];
+  var lines = ["VR Kalıp Taşıma Simülasyonu — Karar Cevapları (v0.7)", ""];
 
   var extras = Array.from(document.querySelectorAll('input[name="extra"]:checked')).map(function (c) { return c.value; });
   lines.push("Ek özellikler: " + (extras.length ? extras.join("; ") : "(seçilmedi)"));
