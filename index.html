@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>VR Kalıp Taşıma ve Yerleştirme Simülasyonu — Proje Tanımı ve Karar Soruları</title>
+<style>
+  :root { --accent:#19527d; --accent-soft:#eaf2f8; --ink:#222; --muted:#5a6470; --line:#d9dee4; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif; color:var(--ink); background:#f5f6f8; line-height:1.55; }
+  .wrap { max-width:880px; margin:0 auto; padding:32px 20px 80px; }
+  header.doc { background:var(--accent); color:#fff; border-radius:10px; padding:28px 32px; margin-bottom:28px; }
+  header.doc h1 { margin:0 0 6px; font-size:26px; line-height:1.25; }
+  header.doc .sub { opacity:.85; font-size:14px; }
+  .howto { background:var(--accent-soft); border:1px solid #c4d8e8; border-radius:8px; padding:14px 18px; font-size:14.5px; margin-bottom:28px; }
+  section { background:#fff; border:1px solid var(--line); border-radius:10px; padding:22px 26px; margin-bottom:20px; }
+  h2 { font-size:19px; margin:0 0 12px; color:var(--accent); }
+  h3 { font-size:16px; margin:22px 0 10px; }
+  h3:first-of-type { margin-top:6px; }
+  p { margin:8px 0; }
+  ul,ol { margin:8px 0; padding-left:22px; }
+  li { margin:4px 0; }
+  .note { color:var(--muted); font-size:14px; font-style:italic; }
+  .qcard { border:1px solid var(--line); border-left:4px solid var(--accent); border-radius:8px; padding:14px 16px; margin:14px 0; }
+  .qcard h3 { margin:0 0 4px; font-size:15.5px; }
+  label.opt { display:flex; gap:10px; align-items:flex-start; padding:9px 10px; border-radius:6px; cursor:pointer; font-size:14.5px; }
+  label.opt:hover { background:var(--accent-soft); }
+  label.opt input { margin-top:4px; flex:0 0 auto; }
+  .free { width:100%; margin-top:8px; padding:8px 10px; border:1px solid var(--line); border-radius:6px; font:inherit; font-size:14px; }
+  textarea.free { min-height:44px; resize:vertical; }
+  .shortq { display:flex; flex-direction:column; gap:4px; margin:12px 0; font-size:14.5px; }
+  .warn { background:#fdf3e3; border:1px solid #ecd2a0; border-radius:8px; padding:12px 16px; font-size:14.5px; margin:12px 0; }
+  .actions { position:sticky; bottom:0; background:linear-gradient(transparent,#f5f6f8 30%); padding:18px 0 6px; display:flex; gap:14px; align-items:center; flex-wrap:wrap; }
+  button { font:inherit; font-size:15px; font-weight:600; border-radius:8px; padding:12px 22px; cursor:pointer; border:1px solid var(--accent); background:var(--accent); color:#fff; }
+  button:hover { filter:brightness(1.08); }
+  button:disabled { opacity:.6; cursor:default; }
+  #status { font-size:14px; }
+  #status.ok { color:#1b7a3d; }
+  #status.err { color:#b03030; }
+  @media print {
+    body { background:#fff; }
+    .actions,.howto { display:none; }
+    section,header.doc { border:none; border-radius:0; padding:10px 0; }
+    header.doc { background:#fff; color:var(--ink); }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <h1>VR Kalıp Taşıma ve Yerleştirme Simülasyonu</h1>
+  <div class="sub">Proje Tanım Dokümanı ve Karar Soruları · Taslak v0.5 — 11.06.2026</div>
+</header>
+
+<div class="howto">
+  <b>Nasıl kullanılır?</b> Bu sayfa, projeyi nasıl anladığımızı özetler ve başlamadan önce netleşmesi gereken konuları seçenekli sorular halinde sunar.
+  Bölüm 4 ve 6'daki seçenekleri işaretleyin, gerekli yerlere kısa not yazın; sayfanın altındaki <b>"Cevapları Gönder"</b> butonuna bastığınızda
+  seçimleriniz doğrudan bize ulaşır — ayrıca bir e-posta yazmanıza gerek yoktur.
+</div>
+
+<section>
+  <h2>1. Proje Özeti</h2>
+  <p>Fabrika ortamında geçen bir sanal gerçeklik (VR) eğitim simülasyonu geliştirilecektir. Kullanıcı, yönlendiricinin (hangi kalıbın nereye taşınacağı talimatını veren kişi) verdiği talimata göre doğru kalıbı alır ve doğru yere yerleştirir. Tüm ekran metinleri ve sesler <b>İngilizce</b> olacaktır.</p>
+  <ul>
+    <li><b>Görev akışı:</b> Talimatı al → doğru kalıbı bul → güvenle kaldır ve taşı → hedefe yerleştir → onay al, sıradaki görev.</li>
+    <li><b>Gerçeğe yakın kontroller:</b> Taşıma ekipmanının gerçek kumanda mantığına mümkün olduğunca sadık bir kontrol şeması hedeflenir.</li>
+    <li><b>Tonaj uyarısı:</b> Kalıbın ağırlığı, kullanılan ekipmanın veya hedef noktanın kapasitesini aşıyorsa kullanıcı sesli ve görsel olarak uyarılır.</li>
+    <li><b>İzleme ekranı:</b> Kullanıcının yaptığı iş, dışarıdaki bir ekrandan eğitmen ve izleyiciler tarafından canlı takip edilebilir.</li>
+    <li><b>Donanım:</b> Bağımsız VR gözlük veya PC'ye bağlı VR kullanılabilir; tercih, Bölüm 6'daki K1 sorusunda size bırakılmıştır.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>2. Referans Aldığımız Örnek</h2>
+  <p>Paylaştığınız CM Labs Intellia "Overhead Crane Simulator Training Pack" örneğini inceledik. Bu üründen projemize uyarlanmasını önerdiğimiz unsurlar:</p>
+  <ul>
+    <li><b>Öğrenme hedefleri:</b> Kalıbı sarsmadan, kontrollü şekilde taşıma; çevredeki araç ve personelle güvenli çalışma; zamanla daha verimli bir iş döngüsü geliştirme.</li>
+    <li><b>Performans ölçümleri:</b> Aşırı yük sayısı, çarpışma sayısı, görev süresi, hatalı kalıp seçimi gibi ölçülebilir değerler. İş tanımınızdaki tonaj uyarısı, bu üründeki "Overload" ölçütüyle birebir örtüşmektedir.</li>
+    <li><b>Eğitmen ve izleme yaklaşımı:</b> Dış ekrandan canlı izleme; eğitmenin senaryoya anlık müdahalesi gibi ileri araçlar opsiyonel genişleme olarak ayrılabilir.</li>
+  </ul>
+  <p class="note">Not: CM Labs örneği bir tavan vinci simülatörüdür. Bizim projede kalıbın hangi ekipmanla taşınacağı henüz tanımlı değildir — bkz. K2; bu karar kontrol şemasını ve fiziği doğrudan belirler.</p>
+</section>
+
+<section>
+  <h2>3. Kapsam</h2>
+  <h3>Ana kapsam (Faz 1)</h3>
+  <ul>
+    <li>Tek kullanıcılı VR fabrika ortamı (İngilizce)</li>
+    <li>Yönlendirici talimat sistemi (görev kartı ve/veya sesli yönlendirme — bkz. K3)</li>
+    <li>Kalıbı sarsmadan, kontrollü şekilde taşıma ve hedefe tam yerleştirme mekanikleri</li>
+    <li>Tonaj kontrolü ve aşırı yük uyarısı (sesli + görsel)</li>
+    <li>Doğru/yanlış yerleştirme geri bildirimi ve görev tamamlama akışı</li>
+    <li>İzleme ekranı: dış monitörden canlı takip</li>
+  </ul>
+  <h3>Kapsam dışı / opsiyonel genişlemeler (ayrıca fiyatlandırılır)</h3>
+  <ul>
+    <li>Çok kullanıcılı senaryolar</li>
+    <li>Eğitmen paneli ile senaryoya canlı müdahale (arıza ve aksaklık ekleme)</li>
+    <li>Detaylı raporlama ve eğitim kayıt sistemi entegrasyonu</li>
+    <li>Gerçek kumanda donanımı entegrasyonu</li>
+    <li>Birden fazla ekipman tipi veya birden fazla fabrika sahası</li>
+  </ul>
+</section>
+
+<section>
+  <h2>4. Önerdiğimiz Ek Özellikler</h2>
+  <p class="note">Aşağıdakiler iş tanımında yer almıyor; eğitim değerini artıracağını düşündüğümüz önerilerimizdir. Uygun gördüklerinizi işaretlemeniz yeterlidir.</p>
+  <div class="warn"><b>Seçilen her ek özellik teslim tarihini ve maliyeti etkileyebilir;</b> etkileri teklif dokümanında ayrı kalemler olarak gösterilecektir.</div>
+
+  <label class="opt"><input type="checkbox" name="extra" value="E1 — Eğitim + Sınav modu">
+    <span><b>E1 — Eğitim + Sınav modu:</b> Eğitim modunda ipuçları ve yardımlar açıktır, kullanıcı adım adım yönlendirilir; sınav modunda yardımlar kapanır ve sonuç puanlanır. Simülasyonu bir gösterimden gerçek bir eğitim aracına dönüştüren en etkili özelliktir.</span></label>
+  <label class="opt"><input type="checkbox" name="extra" value="E2 — Hedef işaretleme yardımları">
+    <span><b>E2 — Hedef işaretleme yardımları:</b> Kalıbın konulacağı yer, yarı saydam bir gösterim veya zemin işaretiyle belirtilir. Açılıp kapatılabilir; yeni kullanıcıların öğrenme süresini belirgin biçimde kısaltır.</span></label>
+  <label class="opt"><input type="checkbox" name="extra" value="E3 — Zorluk seviyeleri">
+    <span><b>E3 — Zorluk seviyeleri:</b> Kolaydan zora ilerleyen senaryo dizisi — daha ağır kalıplar, dar alanlar, çevrede personel ve araçlar. İncelediğiniz üründeki "aşamalı senaryolar" yaklaşımının karşılığıdır.</span></label>
+  <label class="opt"><input type="checkbox" name="extra" value="E4 — Güvenlik ihlali senaryoları">
+    <span><b>E4 — Güvenlik ihlali senaryoları:</b> Yük altından geçen personel, askıda yükle bekleme, kontrolsüz hızlanma gibi durumlarda uyarı verilir ve puan düşülür. İş güvenliği eğitimi boyutunu güçlendirir.</span></label>
+</section>
+
+<section>
+  <h2>5. Varsayımlarımız</h2>
+  <ul>
+    <li>Simülasyon tek kullanıcılıdır; izleyiciler yalnızca ekrandan takip eder, sanal ortama katılmaz.</li>
+    <li>Kalıp listesi, tonaj değerleri ve yerleşim mantığı için tarafınızdan örnek veri alınması beklenir; iletilemezse sektöre uygun temsili değerler kullanılır (bkz. K5).</li>
+    <li>Fabrika ortamı, gerçek tesisin birebir kopyası değil, temsili bir ortam olarak modellenir (aksi K6'da belirtilmedikçe).</li>
+    <li>Projenin <b>Kasım 2026</b> içinde tamamlanması hedeflenmektedir; kesin takvim, bu dokümandaki cevaplara göre teklif aşamasında netleştirilir.</li>
+    <li>Hedef cihaz sayısı ve kurulum yeri sözleşme aşamasında netleştirilir.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>6. Karar Soruları</h2>
+  <p class="note">Önerimiz her soruda "(Önerimiz)" olarak işaretlidir. Tercihinizi işaretleyin; farklı bir tercihiniz varsa "Diğer / Not" alanına yazın.</p>
+
+  <div class="qcard" data-q="K1 — Hedef donanım">
+    <h3>K1 — Hedef donanım</h3>
+    <label class="opt"><input type="radio" name="k1" value="A) PC bağlantılı VR (öneriniz)"><span><b>A) PC bağlantılı VR (Önerimiz)</b> — Gözlük bir bilgisayara bağlı çalışır. Daha yüksek görsel kalite, büyük fabrika sahnesinde rahat performans ve kesintisiz, kaliteli bir izleme ekranı sağlar.</span></label>
+    <label class="opt"><input type="radio" name="k1" value="B) Bağımsız (standalone) gözlük"><span><b>B) Bağımsız (standalone) gözlük</b> — Kablosuz ve pratiktir, bilgisayar gerektirmez. Grafik detayı daha sınırlıdır; izleme ekranı kablosuz yayınla çalışır ve küçük gecikme/kalite kaybı olabilir.</span></label>
+    <label class="opt"><input type="radio" name="k1" value="C) İkisi de desteklensin"><span><b>C) İkisi de desteklensin</b> — Kullanım esnekliği sağlar; geliştirme ve test maliyetini artırır.</span></label>
+    <label class="opt"><input type="radio" name="k1" value="Diğer (nota bakınız)"><span>Diğer</span></label>
+    <textarea class="free notefield" placeholder="Diğer / Not:"></textarea>
+    <div class="shortq">
+      <span><b>K1b —</b> Tercih ettiğiniz veya halihazırda elinizde bulunan bir VR gözlük marka/modeli var mı? <span class="note">(örn. Meta Quest 3, Pico 4, HTC Vive Focus — örnek olarak verilmiştir, seçim size aittir)</span></span>
+      <input class="free shortfield" data-q="K1b — Gözlük marka/modeli" placeholder="Cevabınız:">
+    </div>
+  </div>
+
+  <div class="qcard" data-q="K2 — Kalıbın taşındığı ekipman">
+    <h3>K2 — Kalıp hangi ekipmanla taşınıyor? <span class="note">(kontrolleri ve fiziği belirleyen en kritik karar)</span></h3>
+    <label class="opt"><input type="radio" name="k2" value="A) Tavan vinci"><span><b>A) Tavan vinci</b> — Kumanda ile köprü, araba ve kanca kontrolü; kalıbı bağlama ve çözme adımları da senaryoya dahil edilir.</span></label>
+    <label class="opt"><input type="radio" name="k2" value="B) Forklift / transpalet"><span><b>B) Forklift / transpalet</b> — Sürüş ve çatal kontrolü ağırlıklı bir senaryo kurgulanır.</span></label>
+    <label class="opt"><input type="radio" name="k2" value="C) Elle taşıma + yardımcı ekipman"><span><b>C) Elle taşıma + yardımcı ekipman</b> — Küçük kalıplar için elle alma ve yerleştirme ağırlıklı kurgu.</span></label>
+    <label class="opt"><input type="radio" name="k2" value="D) Birden fazlası (nota bakınız)"><span><b>D) Birden fazlası</b> — Hangileri olduğunu not alanına yazınız.</span></label>
+    <textarea class="free notefield" placeholder="Diğer / Not — tesisinizdeki gerçek yöntemi yazmanız yeterli:"></textarea>
+  </div>
+
+  <div class="qcard" data-q="K3 — Yönlendirici talimatları">
+    <h3>K3 — Yönlendirici talimatları nasıl verilsin?</h3>
+    <label class="opt"><input type="radio" name="k3" value="A) Sesli yönlendirme + görev kartı (öneriniz)"><span><b>A) Sesli yönlendirme + ekranda görev kartı (Önerimiz)</b> — İngilizce telsiz/anons sesiyle talimat verilir; sanal bir panoda yazılı görev özeti de görünür. Gerçek fabrika iletişimine en yakın deneyimdir.</span></label>
+    <label class="opt"><input type="radio" name="k3" value="B) Sadece yazılı görev kartı"><span><b>B) Sadece yazılı görev kartı</b> — Seslendirme maliyeti olmaz; gerçekçilik bir miktar azalır.</span></label>
+    <label class="opt"><input type="radio" name="k3" value="C) Sanal karakter"><span><b>C) Sanal karakter</b> — Talimatı ortamdaki animasyonlu bir karakter verir; en gerçekçi ve en maliyetli seçenektir.</span></label>
+    <label class="opt"><input type="radio" name="k3" value="Diğer (nota bakınız)"><span>Diğer</span></label>
+    <textarea class="free notefield" placeholder="Diğer / Not:"></textarea>
+  </div>
+
+  <div class="qcard" data-q="K4 — İzleme ekranı içeriği">
+    <h3>K4 — İzleme ekranında ne görünsün?</h3>
+    <label class="opt"><input type="radio" name="k4" value="A) Kullanıcının gözünden görüntü"><span><b>A) Kullanıcının gözünden görüntü</b> — Gözlükteki görüntü ekrana aynen yansıtılır; en basit çözümdür.</span></label>
+    <label class="opt"><input type="radio" name="k4" value="B) Dış kamera"><span><b>B) Dış kamera</b> — Sahneyi dışarıdan gösteren sabit veya seçilebilir kamera; izleyiciler için daha anlaşılırdır.</span></label>
+    <label class="opt"><input type="radio" name="k4" value="C) İkisi birlikte + görev paneli (öneriniz)"><span><b>C) İkisi birlikte + görev durumu paneli (Önerimiz)</b> — Görüntünün yanında aktif görev, geçen süre ve uyarılar (örn. aşırı yük) da ekranda görünür; eğitmen için en bilgilendirici seçenektir.</span></label>
+    <label class="opt"><input type="radio" name="k4" value="Diğer (nota bakınız)"><span>Diğer</span></label>
+    <textarea class="free notefield" placeholder="Diğer / Not:"></textarea>
+  </div>
+
+  <div class="qcard" data-q="K5 — Kalıp ve tonaj verisi">
+    <h3>K5 — Kalıp ve tonaj bilgileri nereden gelecek?</h3>
+    <label class="opt"><input type="radio" name="k5" value="A) Müşteriden gerçek liste (öneriniz)"><span><b>A) Sizden gerçek liste (Önerimiz)</b> — Kalıp tipleri, ağırlıkları ve ekipman/istasyon kapasiteleri tarafınızdan iletilir; simülasyon gerçek operasyonunuzu yansıtır.</span></label>
+    <label class="opt"><input type="radio" name="k5" value="B) Temsili değerler"><span><b>B) Temsili değerler</b> — Tarafımızca sektöre uygun örnek değerler kullanılır.</span></label>
+    <label class="opt"><input type="radio" name="k5" value="C) Ayarlanabilir"><span><b>C) Ayarlanabilir</b> — Değerler kurulumdan sonra eğitmen tarafından bir ayar ekranından değiştirilebilir; geliştirme kapsamını büyütür.</span></label>
+    <label class="opt"><input type="radio" name="k5" value="Diğer (nota bakınız)"><span>Diğer</span></label>
+    <textarea class="free notefield" placeholder="Diğer / Not:"></textarea>
+  </div>
+
+  <div class="qcard" data-q="K6 — Fabrika ortamının gerçekliği">
+    <h3>K6 — Fabrika ortamı ne kadar gerçeğe benzesin?</h3>
+    <label class="opt"><input type="radio" name="k6" value="A) Temsili fabrika (öneriniz)"><span><b>A) Temsili fabrika (Önerimiz)</b> — Gerçekçi ama belirli bir tesise bağlı olmayan ortam. Hızlı ve ekonomiktir; eğitim hedefini tam karşılar.</span></label>
+    <label class="opt"><input type="radio" name="k6" value="B) Tesise benzer ortam"><span><b>B) Tesisinize benzer ortam</b> — Fotoğraf ve yerleşim planından yola çıkılarak benzer bir atmosfer kurulur.</span></label>
+    <label class="opt"><input type="radio" name="k6" value="C) Birebir kopya"><span><b>C) Birebir kopya</b> — Teknik çizim veya ölçüm verisi gerektirir; en yüksek maliyetli seçenektir.</span></label>
+    <label class="opt"><input type="radio" name="k6" value="Diğer (nota bakınız)"><span>Diğer</span></label>
+    <textarea class="free notefield" placeholder="Diğer / Not:"></textarea>
+  </div>
+
+  <div class="qcard" data-q="K7 — Performans ölçümü">
+    <h3>K7 — Performans ölçümü ve değerlendirme</h3>
+    <label class="opt"><input type="radio" name="k7" value="A) Sadece görev tamamlama"><span><b>A) Sadece görev tamamlama</b> — Doğru/yanlış geri bildirimi yeterlidir.</span></label>
+    <label class="opt"><input type="radio" name="k7" value="B) Temel ölçümler (öneriniz)"><span><b>B) Temel ölçümler (Önerimiz)</b> — Görev süresi, hatalı kalıp seçimi, aşırı yük ve çarpışma sayısı kaydedilir; oturum sonunda özet ekranı gösterilir.</span></label>
+    <label class="opt"><input type="radio" name="k7" value="C) Detaylı raporlama"><span><b>C) Detaylı raporlama</b> — Oturum kayıtlarının dışa aktarımı ve kullanıcı bazlı geçmiş takibi; opsiyonel kapsama girer.</span></label>
+    <label class="opt"><input type="radio" name="k7" value="Diğer (nota bakınız)"><span>Diğer</span></label>
+    <textarea class="free notefield" placeholder="Diğer / Not:"></textarea>
+  </div>
+
+  <div class="qcard" data-q="K8 — Kısa cevaplı sorular">
+    <h3>K8 — Kısa cevaplı sorular</h3>
+    <div class="shortq"><span>1. Eğitim alacak kişi profili ve sayısı (operatör, yeni personel vb.):</span>
+      <input class="free shortfield" data-q="K8.1 — Kişi profili ve sayısı" placeholder="Cevabınız:"></div>
+    <div class="shortq"><span>2. Kaç cihaz/istasyon planlanıyor, kurulum nerede yapılacak?</span>
+      <input class="free shortfield" data-q="K8.2 — Cihaz sayısı ve kurulum yeri" placeholder="Cevabınız:"></div>
+    <div class="shortq"><span>3. Mevcut VR donanımınız var mı, varsa model?</span>
+      <input class="free shortfield" data-q="K8.3 — Mevcut VR donanımı" placeholder="Cevabınız:"></div>
+    <div class="shortq"><span>4. Kasım 2026 hedefini teyit ediyor musunuz? Daha erken bir ara gösterim beklentiniz var mı?</span>
+      <input class="free shortfield" data-q="K8.4 — Takvim teyidi" placeholder="Cevabınız:"></div>
+    <div class="shortq"><span>5. Cevaplayan kişi ve kurum (isim, e-posta):</span>
+      <input class="free shortfield" data-q="K8.5 — Cevaplayan kişi ve iletişim" placeholder="Cevabınız:"></div>
+  </div>
+</section>
+
+<section>
+  <h2>7. Teslimatlar</h2>
+  <ul>
+    <li>Çalışır uygulama paketi (kurulum dosyası)</li>
+    <li>Kurulum ve kullanım kılavuzu</li>
+    <li>Uzaktan kuruluma alma desteği ve kısa kullanım eğitimi</li>
+    <li>Teslim sonrası hata düzeltme desteği (süresi teklif dokümanında belirtilir)</li>
+  </ul>
+</section>
+
+<section>
+  <h2>8. Kabul Kriterleri (taslak)</h2>
+  <p class="note">Kesin liste, karar sorularının cevaplarına göre teklif dokümanında son halini alır.</p>
+  <ul>
+    <li>Yönlendirici talimatıyla başlayan görev senaryoları baştan sona oynanabilir durumdadır.</li>
+    <li>Kapasite aşımında sesli ve görsel uyarı çalışır.</li>
+    <li>İzleme ekranı canlı görüntüyü kesintisiz gösterir.</li>
+    <li>Tüm metinler ve sesler İngilizcedir.</li>
+    <li>Uygulama hedef donanımda akıcı ve kararlı çalışır.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>9. Sonraki Adımlar</h2>
+  <ol>
+    <li>Bölüm 4 ve 6'daki seçimleri yapıp aşağıdaki butonla cevaplarınızı bize iletmeniz.</li>
+    <li>Cevaplara göre kapsam, takvim ve fiyat içeren teklif dokümanını hazırlamamız.</li>
+    <li>Onay sonrası geliştirmeye başlanması; ilk oynanabilir sürümün (kalıp alma–taşıma–uyarı döngüsü) erken aşamada sizinle paylaşılması.</li>
+  </ol>
+</section>
+
+<div class="actions">
+  <button id="send" type="button">Cevapları Gönder</button>
+  <span id="status"></span>
+</div>
+
+<script>
+var FORMSPREE_URL = "https://formspree.io/f/FORM_ID";
+
+function buildSummary() {
+  var lines = ["VR Kalıp Taşıma Simülasyonu — Karar Cevapları (v0.5)", ""];
+
+  var extras = Array.from(document.querySelectorAll('input[name="extra"]:checked')).map(function (c) { return c.value; });
+  lines.push("Ek özellikler: " + (extras.length ? extras.join("; ") : "(seçilmedi)"));
+  lines.push("");
+
+  document.querySelectorAll(".qcard").forEach(function (card) {
+    var title = card.getAttribute("data-q");
+    var checked = card.querySelector('input[type="radio"]:checked');
+    if (card.querySelector('input[type="radio"]')) {
+      lines.push(title + ": " + (checked ? checked.value : "(cevaplanmadı)"));
+    }
+    var note = card.querySelector(".notefield");
+    if (note && note.value.trim()) lines.push("  Not: " + note.value.trim());
+    card.querySelectorAll(".shortfield").forEach(function (f) {
+      lines.push(f.getAttribute("data-q") + ": " + (f.value.trim() || "(cevaplanmadı)"));
+    });
+  });
+
+  return lines.join("\n");
+}
+
+function setStatus(text, cls) {
+  var el = document.getElementById("status");
+  el.textContent = text;
+  el.className = cls || "";
+}
+
+document.getElementById("send").addEventListener("click", function () {
+  if (FORMSPREE_URL.indexOf("FORM_ID") !== -1) {
+    setStatus("Gönderim henüz yapılandırılmadı — lütfen cevaplarınızı e-posta ile iletin.", "err");
+    return;
+  }
+  var btn = this;
+  btn.disabled = true;
+  setStatus("Gönderiliyor…");
+
+  fetch(FORMSPREE_URL, {
+    method: "POST",
+    headers: { "Accept": "application/json", "Content-Type": "application/json" },
+    body: JSON.stringify({
+      _subject: "VR Kalıp Taşıma Simülasyonu — Karar Cevapları",
+      cevaplar: buildSummary()
+    })
+  }).then(function (res) {
+    if (res.ok) {
+      setStatus("Cevaplarınız iletildi, teşekkür ederiz. En kısa sürede dönüş yapacağız.", "ok");
+    } else {
+      throw new Error("HTTP " + res.status);
+    }
+  }).catch(function () {
+    btn.disabled = false;
+    setStatus("Gönderim başarısız oldu. Lütfen tekrar deneyin veya cevaplarınızı e-posta ile iletin.", "err");
+  });
+});
+</script>
+
+</div>
+</body>
+</html>
